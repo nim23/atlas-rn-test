@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Platform } from "react-native";
 import passwords from "passwords"; //previously used passwords
 
 export default class Test extends React.Component {
@@ -83,10 +83,16 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginTop: 20
   },
-  textInput: {
-    width: "100%",
-    fontSize: 20,
-    height: 30,
-    borderWidth: 1
-  }
+  textInput: Platform.select({
+    ios: {
+      width: "100%",
+      fontSize: 20,
+      height: 30,
+      borderWidth: 1
+    },
+    android: {
+      width: "100%",
+      height: 40
+    }
+  })
 });

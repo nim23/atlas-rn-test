@@ -16,3 +16,7 @@ Acceptance criteria:
 	• Password must contain both upper case and lower case characters
 	• Passwords must contain at least one numeric character
 	• The password must not have been used before
+
+Tips:
+
+You can run `npm run test:watch` to continuously run the test while you are coding for immediate feedback.
