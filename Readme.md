@@ -5,7 +5,7 @@ Pairing Exercise:
 We have created a skeleton project for a reset password screen.
 The business logic for this must validate that the password is sufficiently complex before attempting to set it.
 
-You must implement the logic for the PassWordValidator using TDD approach.
+You must implement the logic for the Password validator using TDD approach.
 
 Acceptance criteria:
 
