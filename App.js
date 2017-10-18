@@ -4,34 +4,69 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import passwords from "passwords"; //previously used passwords
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class Test extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newPassword: {
+        text: "",
+        valid: false
+      },
+      confirmPassword: {
+        text: "",
+        valid: false
+      },
+      buttonDisabled: true
+    };
+  }
 
-export default class App extends Component<{}> {
+  _isValidPassword = () => false;
+
+  _onChangeEnterNewPassword = value => {
+    this.setState({
+      newPassword: {
+        text: value,
+        valid: this._isValidPassword()
+      }
+    });
+  };
+
+  _onChangeConfirmNewPassword = value => {
+    this.setState({
+      confirmPassword: {
+        text: value,
+        valid: this._isValidPassword()
+      }
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <Text style={styles.textLabel}>Enter new password: </Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={this._onChangeEnterNewPassword}
+          value={this.state.text}
+        />
+        <Text style={styles.textLabel}>Confirm new password: </Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={this._onChangeConfirmNewPassword}
+          value={this.state.text}
+        />
+        <View style={{ backgroundColor: "green", marginTop: 20 }}>
+          <Button
+            disabled={this.state.buttonDisabled}
+            title="Reset Password"
+            color="#ffffff"
+            onPress={() => {}}
+          />
+        </View>
       </View>
     );
   }
@@ -40,18 +75,18 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "flex-start",
+    padding: 10,
+    backgroundColor: "#F5FCFF"
   },
-  welcome: {
+  textLabel: {
+    textAlign: "left",
+    marginTop: 20
+  },
+  textInput: {
+    width: "100%",
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    height: 30,
+    borderWidth: 1
+  }
 });
